@@ -43,6 +43,9 @@ def AscifyImage(image, bg="black", res=-1, save=False, show=False):
     elif bg == "black":
         bg_code = 0
     image_height, image_width, _ = image.shape
+    # Resizing the image if it's asked, or when the dimentions are not even (gives problems with ffmpeg)
+    if res == -1 and (image_height % 2 != 0 or image_width % 2 != 0):
+        res = image_width
     if res != -1:
         scale = image_width/res
         image_width = res
