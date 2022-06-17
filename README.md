@@ -1,2 +1,8 @@
-# Asciify-Videos
-Asciification of videos using Python. ACM Summer Open Project 2022
+# Videos To Ascii Art Generator
+
+## Table of Contents: 
+* Overview of Project
+* How to run it on your device
+* Internal Workings
+
+## Overview of Project
