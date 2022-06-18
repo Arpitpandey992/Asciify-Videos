@@ -88,7 +88,7 @@ def AscifyImage(image, bg="black", res=-1, save=False, show=False):
             # intensity = (r+g+b)/3
             # intensity = 233
 
-            position = int((intensity/255) * (len(char_list)))-1
+            position = int((intensity/360) * (len(char_list)))-1
 
             color = np.mean(rgb_image[y_start:y_end, x_start:x_end], axis=(
                 0, 1)).astype(np.uint8)
@@ -101,8 +101,10 @@ def AscifyImage(image, bg="black", res=-1, save=False, show=False):
     output_hsv = cv2.cvtColor(output, cv2.COLOR_RGB2HSV)
     # output_hsv[..., 1] = cv2.equalizeHist(output_hsv[..., 1])
     # output_hsv[..., 2] = cv2.equalizeHist(output_hsv[..., 2])
-    # increasing the Brightness by 20%
-    output_hsv[:, :, 2] += 20
+    # increasing the Brightness by 20
+    for r in output_hsv:
+        for c in r:
+            c[2] = min(255, c[2]+20)
     output_bgr = cv2.cvtColor(output_hsv, cv2.COLOR_HSV2BGR)
     if save:
         cv2.imwrite("./Outputs/Out.png", output_bgr)
@@ -158,8 +160,10 @@ def AsciifyVideo(video_path, background="black", frame_skip=1, resolution=-1):
 
 # AsciifyVideo('/home/arpit/Programming/Python/ASCII-Art-Gen/Asciify-Videos/data/Video_Sample.mp4',
 #              background="black", resolution=500)
-AscifyImage(cv2.imread("data/Images/arch-linux-wallpaper-1080p.png"),
-            bg="black", save=True, show=False)
+# AscifyImage(cv2.imread("data/Images/arch-linux-wallpaper-1080p.png"),
+#             bg="black", save=True, show=False)
+AscifyImage(cv2.imread("data/Images/Umineko_Ricordando_il_Passato.jpg"),
+            bg="white", save=True, show=False)
 # AscifyImage(cv2.imread(
 #     "data/input2.jpg"), bg="white", save=True, show=False)
 # AscifyImage(cv2.imread(

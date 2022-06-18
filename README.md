@@ -80,8 +80,32 @@ Now, we have all of the processed frames saved as .jpg files in the Output direc
 ffmpeg is now used to gather all of these frames, and merge them with the audio in the original file (if it is present), and produce the final output video, which is then exported to the same Output folder.\
 This concludes the algorithm.
 
-#### Extra Programming specific Details
-For some reason, ffmpeg was unable to process the images when either their height or width was odd. hence, i reduced the dimensions by one in case they weren't even.
+### Extra Information
+The simplest way of calculating intensity is to just average out the RGB channels. But there are other ways as well such as average of min and max of these values, or simply using the L value in Lab image, or we can average out the SV channels in HSV image. More on that <a href=https://en.wikipedia.org/wiki/HSL_and_HSV#Lightness>here</a>\
+For Comparison, when calculating intensity :\
+![](Results/Intensity_comparison.png)
+
+As we can see, using Lab and RGB gives identical output, But using HSV gives brighter output. I have included all these intensity calculation code in the program as comment to test later.
+
+For Coloring, i am increasing the brightness of the final output by converting the output to HSV, then increasing the Value channel by 20 (20% increase).
+
+![](Results/Brightness_Comparison.png)
+
+Which one's better is very subjective. I feel the results are great when using HSV for calculating intensity, and increasing brightness by 20%, so i went with that.
+
+The background of output images is by default set to black, but it could be changed of course. black background allows the ascii art to "pop out" in my opinion. White background of course looks better in a few situations.\
+For Comparison, Original Image:\
+![](data/Images/Umineko_Ricordando_il_Passato.jpg)
+Black Background:\
+![](Results/Umineko_black.png)
+White Background:\
+![](Results/Umineko_white.png)
+
+
+Now, coming to optimization and performance analysis, converting high resolution images directly to ascii is a very performance heavy task, hence some corners needs to be cut since we are not working with one image, but rather hundreds, or even thousands in the form of video frames.\
+For this reason, i decided to introduce two more variables, Resolution and Frame Skip. The former resizes the input frames to a (preferrably) smaller size and the latter reduces the frame rate. Frame skipping directly increases performance by huge factor, but makes the output video choppy.
+
+Also, for some reason, ffmpeg was unable to process the images when either their height or width were odd. hence, i reduced the dimensions by one in case they weren't even.
 
 ## Things i Learned
 This project taught me about various aspects of programming with python and working with media in general. Since my preferred language is C++ and javascript, i did this project using python to get some extra learning out of it.
@@ -90,14 +114,3 @@ First of all, it is very easy to do basic array operations thanks to the versati
 There were some gruelling moments as well, mostly relating to the processing speeds of python. Python is simple to understand and use, but that mostly comes at a cost of performance. Many times, i had to wait hours to process a video merely two minutes long. 
 
 Coming to the image processing part, i got to learn a lot about various image spaces like RGB, BGR, HSV and Lab. I looked up information about HSV and Lab image spaces to see how the brightness and sharpness of the output image could be improved.
-The simplest way of calculating intensity was to just average out the RGB channels. But there are other ways as well such as average of min and max of these values, or simply using the L value in Lab image, or we can average out the SV channels in HSV image.
-For Comparison :\
-![Intensity](Results/Intensity_comparison.png "Intensities")
-
-As we can see, using Lab and RGB gives identical output, But using HSV gives brighter output. I have included all these intensity calculation code in the program as comment to test later.
-
-For Coloring, i am increasing the brightness of the final output by converting the output to HSV, then increasing the value of the Value channel by 20 (20% increase).
-
-![Brightness](Results/Brightness_Comparison.png "Brightness")
-
-Which one's better is subjective.
