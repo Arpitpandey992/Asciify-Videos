@@ -21,12 +21,22 @@ As mentioned earlier, this project is made using python, so we'll be needing it 
 |  Numpy |     `pip install numpy`     |
 
 * After installing the necessary libraries, just clone the repo and open a terminal in the root directory of this repository.
-* Now, just write `python "path to the video file"` without the quotes.
-* It will take a while, depending on the resolution of the video and number of frames, since optimization wasn't the priority yet.
+* The program accepts arguments as `python ascii.py [FilePath, FileType, Resolution, FrameSkip, Background Color]` where :\
+* FileType = "-v" for video and "-i" for image.\
+* Resolution is the width of the output, height will be scaled accordingly. set it as -1 to keep same dimensions.
+* FrameSkip is the amount of frames to skip in case selected FileType is video, set it randomly for image.\
+A value of 2 will half the output frame rate.
+* Background is either "black" or "white"
+* For example write `python ascii.py "data/Videos/NootNoot2D.webm" -v 1280 2` to process the video file, at 1280x720 resolution (16:9), 15 fps (30/2) and black background (default option if no argument is given).
+* Default arguments are `["data/Videos/Video_Sample.mp4", "-v", -1, 1, "black"]`
+* Video processing especially will take a while, depending on the resolution of the video and number of frames, since optimization wasn't the priority yet. Images should render fairly quickly.
 
 ## Demo and Results
+### Demo
+
+
 ### Results
-These results are obtained after allowing the program to run for a decent amount of time, hence they are not obtained in real time.
+These results are obtained after allowing the program to run for a significant amount of time, hence they are not obtained in real time.
 
 
 https://user-images.githubusercontent.com/101496881/174437541-c6fc9890-94db-42d2-820f-b6ace8a5521f.mp4
@@ -137,3 +147,5 @@ First of all, it is very easy to do basic array operations thanks to the versati
 There were some gruelling moments as well, mostly relating to the processing speeds of python. Python is simple to understand and use, but that mostly comes at a cost of performance. Many times, i had to wait hours to process a video merely two minutes long. 
 
 Coming to the image processing part, i got to learn a lot about various image spaces like RGB, BGR, HSV and Lab. I looked up information about HSV and Lab image spaces to see how the brightness and sharpness of the output image could be improved.
+
+Lastly, i got to learn a lot about video processing and directory management using python. I had a good experience applying various filters to preprocess frames in a video. 
