@@ -1,9 +1,11 @@
 # Videos To Ascii Art Generator
 
 ## Table of Contents: 
-* Overview of Project
-* How to run it on your device
+* Description
+* How to Run The Project
+* Demo and Results
 * Internal Workings
+* Things i Learned
 
 ## Description
 The final goal of this project is to convert an input video into an <a href = https://en.wikipedia.org/wiki/ASCII_art> ascii art </a> video. For this task, I used python and a couple of libraries.
@@ -22,6 +24,10 @@ As mentioned earlier, this project is made using python, so we'll be needing it 
 * Now, just write `python "path to the video file"` without the quotes.
 * It will take a while, depending on the resolution of the video and number of frames, since optimization wasn't the priority yet.
 
+## Demo and Results
+### Results
+These results are obtained after allowing the program to run for a decent amount of time, hence they are not obtained in real time.
+[![Watch the video](https://i.imgur.com/vKb2F1B.png)](https://youtu.be/vt5fpE0bzSY)
 ## Internal Workings
 Let's see how this program works.\
 This project can be broken down into two major subparts:
@@ -100,12 +106,12 @@ Black Background:\
 ![](Results/Umineko_black.png)
 White Background:\
 ![](Results/Umineko_white.png)
-
+It's obvious how a white background makes the color look washed out in comparison with a black background.
 
 Now, coming to optimization and performance analysis, converting high resolution images directly to ascii is a very performance heavy task, hence some corners needs to be cut since we are not working with one image, but rather hundreds, or even thousands in the form of video frames.\
 For this reason, i decided to introduce two more variables, Resolution and Frame Skip. The former resizes the input frames to a (preferrably) smaller size and the latter reduces the frame rate. Frame skipping directly increases performance by huge factor, but makes the output video choppy.
 
-Also, for some reason, ffmpeg was unable to process the images when either their height or width were odd. hence, i reduced the dimensions by one in case they weren't even.
+Also, for some reason, while rebuilding the video from the processed frames, ffmpeg was unable to process the frames when either their height or width were odd. hence, i reduced the dimensions by one in case they weren't even.
 
 ## Things i Learned
 This project taught me about various aspects of programming with python and working with media in general. Since my preferred language is C++ and javascript, i did this project using python to get some extra learning out of it.

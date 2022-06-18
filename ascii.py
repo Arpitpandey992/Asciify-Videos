@@ -4,19 +4,6 @@ from PIL import Image, ImageDraw, ImageOps, ImageFont
 import ffmpeg
 import os
 
-# Characters used for Mapping to Pixels
-Character = {
-    "standard": "@%#*+=-:. ",
-    "complex": " .'`^\",:;Il!i<~+_-?[{1(|/tfjrxnuvczXYUJCLQ0OZmwqpdbkhao*#MW&8%B@$"
-}
-
-
-def get_data(mode, fontSize):
-    font = ImageFont.truetype("fonts/DejaVuSansMono-Bold.ttf", size=fontSize)
-    char_list = Character[mode]
-    return char_list, font
-
-
 def ShowImg(image, pil=False):
     cv2_img = image.copy()
     if pil:
@@ -32,9 +19,6 @@ def PIL2CV2(image):
     if(len(cv2_img.shape) == 3):
         cv2_img = cv2.cvtColor(cv2_img, cv2.COLOR_RGB2BGR)
     return cv2_img
-
-
-char_list, font = get_data(mode="complex", fontSize=10)
 
 
 def AscifyImage(image, bg="black", res=-1, save=False, show=False):
@@ -78,17 +62,17 @@ def AscifyImage(image, bg="black", res=-1, save=False, show=False):
             y_end = font_height*(i+1)
             x_end = font_width*(j+1)
 
-            intensity = np.mean(lab_image[y_start:y_end, x_start:x_end, 0])
-            # i1 = np.mean(hsv_image[y_start:y_end, x_start:x_end, 1])
-            # i2 = np.mean(hsv_image[y_start:y_end, x_start:x_end, 2])
-            # intensity = (i1 + i2)/2
+            # intensity = np.mean(lab_image[y_start:y_end, x_start:x_end, 0])
+            i1 = np.mean(hsv_image[y_start:y_end, x_start:x_end, 1])
+            i2 = np.mean(hsv_image[y_start:y_end, x_start:x_end, 2])
+            intensity = (i1 + i2)/2
             # g = np.mean(image[y_start:y_end, x_start:x_end, 0])
             # b = np.mean(image[y_start:y_end, x_start:x_end, 1])
             # r = np.mean(image[y_start:y_end, x_start:x_end, 2])
             # intensity = (r+g+b)/3
             # intensity = 233
 
-            position = int((intensity/360) * (len(char_list)))-1
+            position = int((intensity/255) * (len(char_list)))-1
 
             color = np.mean(rgb_image[y_start:y_end, x_start:x_end], axis=(
                 0, 1)).astype(np.uint8)
@@ -155,6 +139,8 @@ def AsciifyVideo(video_path, background="black", frame_skip=1, resolution=-1):
     cv2.destroyAllWindows()
 
 
+char_list = " .'`^\",:;Il!i<~+_-?[{1(|/tfjrxnuvczXYUJCLQ0OZmwqpdbkhao*#MW&8%B@$"
+font = ImageFont.truetype("fonts/DejaVuSansMono-Bold.ttf", size=10)
 # AscifyFrame(image=cv2.imread(
 #     "/home/arpit/Pictures/Wallpapers/11chromaticdark.png"), bg="black")
 
@@ -163,7 +149,7 @@ def AsciifyVideo(video_path, background="black", frame_skip=1, resolution=-1):
 # AscifyImage(cv2.imread("data/Images/arch-linux-wallpaper-1080p.png"),
 #             bg="black", save=True, show=False)
 AscifyImage(cv2.imread("data/Images/Umineko_Ricordando_il_Passato.jpg"),
-            bg="white", save=True, show=False)
+            bg="white", res=1920, save=True, show=False)
 # AscifyImage(cv2.imread(
 #     "data/input2.jpg"), bg="white", save=True, show=False)
 # AscifyImage(cv2.imread(
