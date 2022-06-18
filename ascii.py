@@ -110,6 +110,7 @@ def AsciifyVideo(video_path, background="black", frame_skip=1, resolution=-1):
     vidCap = cv2.VideoCapture(video_path)
     NumFrames = int(vidCap.get(cv2.CAP_PROP_FRAME_COUNT))
     FPS = vidCap.get(cv2.CAP_PROP_FPS)
+    idx=1
     for frame_idx in range(NumFrames):
         # Reading a frame
         ret, frame = vidCap.read()
@@ -117,9 +118,10 @@ def AsciifyVideo(video_path, background="black", frame_skip=1, resolution=-1):
             break
         if frame_idx % frame_skip != 0:
             continue
-        cv2.imwrite(f"{path_frames}/frame_{frame_idx+1}.jpg",
+        cv2.imwrite(f"{path_frames}/frame_{idx}.jpg",
                     AscifyImage(frame, bg=background, res=resolution))
-        print(f"Processed Frame : {frame_idx}")
+        print(f"Processed Frame : {idx}")
+        idx+=1
     print("Done Processing Frames")
 
     # Assembling Video from the Produced Frames and Audio from the input Video
