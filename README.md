@@ -32,6 +32,12 @@ These results are obtained after allowing the program to run for a decent amount
 https://user-images.githubusercontent.com/101496881/174437541-c6fc9890-94db-42d2-820f-b6ace8a5521f.mp4
 
 
+
+https://user-images.githubusercontent.com/101496881/174440152-7b359239-3270-4ef7-b7b8-814aeae24761.mp4
+
+
+
+
 ## Internal Workings
 Let's see how this program works.\
 This project can be broken down into two major subparts:
