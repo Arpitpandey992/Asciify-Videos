@@ -34,7 +34,7 @@ def PIL2CV2(image):
     return cv2_img
 
 
-char_list, font = get_data(mode="complex", fontSize=6)
+char_list, font = get_data(mode="complex", fontSize=10)
 
 
 def AscifyImage(image, bg="black", res=-1, save=False, show=False):
@@ -159,7 +159,7 @@ def AsciifyVideo(video_path, background="black", frame_skip=1, resolution=-1):
 # AsciifyVideo('/home/arpit/Programming/Python/ASCII-Art-Gen/Asciify-Videos/data/Video_Sample.mp4',
 #              background="black", resolution=500)
 AscifyImage(cv2.imread("data/Images/arch-linux-wallpaper-1080p.png"),
-            bg="white", save=True, show=False)
+            bg="black", save=True, show=False)
 # AscifyImage(cv2.imread(
 #     "data/input2.jpg"), bg="white", save=True, show=False)
 # AscifyImage(cv2.imread(

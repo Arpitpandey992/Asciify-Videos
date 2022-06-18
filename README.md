@@ -5,4 +5,99 @@
 * How to run it on your device
 * Internal Workings
 
-## Overview of Project
+## Description
+The final goal of this project is to convert an input video into an <a href = https://en.wikipedia.org/wiki/ASCII_art> ascii art </a> video. For this task, I used python and a couple of libraries.
+
+## How to Run the Project
+As mentioned earlier, this project is made using python, so we'll be needing it firstly (Developed using Python 3.10.5).
+### Dependencies
+|  Name  |     pip install Command     |
+|:------:|:---------------------------:|
+| Pillow |     `pip install Pillow`    |
+| openCV | `pip install opencv-python` |
+| ffmpeg | `pip install ffmpeg-python` |
+|  Numpy |     `pip install numpy`     |
+
+* After installing the necessary libraries, just clone the repo and open a terminal in the root directory of this repository.
+* Now, just write `python "path to the video file"` without the quotes.
+* It will take a while, depending on the resolution of the video and number of frames, since optimization wasn't the priority yet.
+
+## Internal Workings
+Let's see how this program works.\
+This project can be broken down into two major subparts:
+* Asciifying an Image
+* Grabbing frames from a video and processing
+
+### Task I - Asciifying an Image
+Firstly what is an image? well, it's just a bunch of numeric data presented on 3D matrix having dimensions : <tt>Width x Height x Channels</tt>
+
+The channels are Red, Green, and Blue in case of an RGB image, which defines how much red, green and blue values (range of 0 - 255) each pixel has respectively.
+From these three Values, we can find the intensity of an image by taking their mean ((r+g+b)/3)
+
+Now that we have the intensity of each pixel, we can go forward with mapping it with some ascii character. But we can't just proceed randomly, instead, we sort the ascii characters in the increasing order of their intensities. By this, i mean, characters that take up more area are more intense than those who take less.\
+For Example : <tt> @ is more intense than _ </tt>.
+
+The order that i used :\
+<tt>.'\`^",:;Il!i<~+_-?[{1(|/tfjrxnuvczXYUJCLQ0OZmwqpdbkhao*#MW&8%B@$</tt>
+
+We can map each intensity value from 0 - 255 to their corresponding ascii character using the formula : \
+`position = int((intensity/255) * (len(char_list)))-1`
+
+Since having ascii characters represented by white characters feels bland, i am also colorizing each character with the mean color of the pixel area they map to.
+
+These give the image two major properties:
+* Color allows difference to be visible
+* Intensity allows the depth to be more apparent, making asciified images look sharper.
+
+i am using true type fonts for this project, because their height and width are constant throughout the character set. This makes it easy and very algorithmic to calculate the mean intensity and color of a particular region of image, since the bounds are known before-hand.
+
+Now, coming to the actual algorithm, it's fairly simple. We firstly divide the image into \
+<tt>Image_Height/Font_Height Rows</tt>\
+<tt>Image_Width/Font_Width Columns</tt>
+
+We iterate to each of these newly formed cells, and then for the part of image lying in the currently iterating rectangle, we calculate the average intensity, and average color of all pixels in this cell using the aforementioned formulas.\
+Now, we just insert the corresponding character in this cell after coloring it.
+
+Repeat this process for all the cells, and we got ourselves an asciified version of the input image!
+
+#### Python Specific Details
+Since we are working with images here, i am using both PIL and openCV to do this task. Most of the operations are handled by openCV.\
+PIL allows us to draw monospaced fonts on an image, which is something that is missing in openCV, hence justifying PIL's use here.\
+The mean values are quickly calculated by slicing the input array and applying numpy's mean().\
+Rest of the programming details can be found as comments in Asciify.py file.
+
+Now that we have got ourselves an algorithm that converts an image to an ascii image, let's move to the next step.
+
+### Task II - Asciifying a Video
+This is the additional task that i am doing in this project.
+
+This step mainly involves extracting frames from an input video, then applying the aforementioned algorithm to process each frame, then reproducing a video using these frames and audio from the original input.\
+For this, i am making use of OpenCV and ffmpeg.
+
+We extract all of the frames by using VideoCapture function of openCV. Then, proceed on to processing these frames one by one as we are extracting them (To avoid excess memory usage).\
+Now, we have all of the processed frames saved as .jpg files in the Output directory.
+
+ffmpeg is now used to gather all of these frames, and merge them with the audio in the original file (if it is present), and produce the final output video, which is then exported to the same Output folder.\
+This concludes the algorithm.
+
+#### Extra Programming specific Details
+For some reason, ffmpeg was unable to process the images when either their height or width was odd. hence, i reduced the dimensions by one in case they weren't even.
+
+## Things i Learned
+This project taught me about various aspects of programming with python and working with media in general. Since my preferred language is C++ and javascript, i did this project using python to get some extra learning out of it.
+
+First of all, it is very easy to do basic array operations thanks to the versatile nature of numpy (OpenCV images are basically Numpy arrays). That made working with images way easier than it would have if i was working in C++. All of the image space conversions are available in the OpenCV library as inbuilt functions, making the code look very clean and easy to understand.\
+There were some gruelling moments as well, mostly relating to the processing speeds of python. Python is simple to understand and use, but that mostly comes at a cost of performance. Many times, i had to wait hours to process a video merely two minutes long. 
+
+Coming to the image processing part, i got to learn a lot about various image spaces like RGB, BGR, HSV and Lab. I looked up information about HSV and Lab image spaces to see how the brightness and sharpness of the output image could be improved.
+The simplest way of calculating intensity was to just average out the RGB channels. But there are other ways as well such as average of min and max of these values, or simply using the L value in Lab image, or we can average out the SV channels in HSV image.
+For Comparison :\
+![Intensity](Results/Intensity_comparison.png "Intensities")
+
+As we can see, using Lab and RGB gives identical output, But using HSV gives brighter output. I have included all these intensity calculation code in the program as comment to test later.
+
+For Coloring, i am increasing the brightness of the final output by converting the output to HSV, then increasing the value of the Value channel by 20 (20% increase).
+
+![Brightness](Results/Brightness_Comparison.png "Brightness")
+
+Which one's better is subjective.
