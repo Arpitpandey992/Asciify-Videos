@@ -27,7 +27,11 @@ As mentioned earlier, this project is made using python, so we'll be needing it 
 ## Demo and Results
 ### Results
 These results are obtained after allowing the program to run for a decent amount of time, hence they are not obtained in real time.
-[![Watch the video](https://i.imgur.com/vKb2F1B.png)](https://youtu.be/vt5fpE0bzSY)
+
+
+https://user-images.githubusercontent.com/101496881/174437380-654cf85f-bbd3-4015-93aa-a896befa645f.mp4
+
+
 ## Internal Workings
 Let's see how this program works.\
 This project can be broken down into two major subparts:
