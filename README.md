@@ -30,6 +30,8 @@ A value of 2 will half the output frame rate.
 * For example write `python ascii.py "data/Videos/NootNoot2D.webm" -v 1280 2` to process the video file, at 1280x720 resolution (16:9), 15 fps (30/2) and black background (default option if no argument is given).
 * Default arguments are `["data/Videos/Video_Sample.mp4", "-v", -1, 1, "black"]`
 * Video processing especially will take a while, depending on the resolution of the video and number of frames, since optimization wasn't the priority yet. Images should render fairly quickly.
+* Video outputs are stored in ./Ouputs directory, where folders are automatically created.\
+Image Outputs are simply named as out.png in ./Outputs folder
 
 ## Demo and Results
 ### Demo
@@ -114,12 +116,14 @@ ffmpeg is now used to gather all of these frames, and merge them with the audio 
 This concludes the algorithm.
 
 ### Extra Information
+#### Intensity Calculation
 The simplest way of calculating intensity is to just average out the RGB channels. But there are other ways as well such as average of min and max of these values, or simply using the L value in Lab image, or we can average out the SV channels in HSV image. More on that <a href=https://en.wikipedia.org/wiki/HSL_and_HSV#Lightness>here</a>\
 For Comparison, when calculating intensity :\
 ![](Results/Intensity_comparison.png)
 
 As we can see, using Lab and RGB gives identical output, But using HSV gives brighter output. I have included all these intensity calculation code in the program as comment to test later.
 
+#### Coloring and Brightness of output
 For Coloring, i am increasing the brightness of the final output by converting the output to HSV, then increasing the Value channel by 20 (20% increase).
 
 ![](Results/Brightness_Comparison.png)
@@ -135,6 +139,7 @@ White Background:\
 ![](Results/Umineko_white.png)
 It's obvious how a white background makes the color look washed out in comparison with a black background.
 
+#### Performance Analysis
 Now, coming to optimization and performance analysis, converting high resolution images directly to ascii is a very performance heavy task, hence some corners needs to be cut since we are not working with one image, but rather hundreds, or even thousands in the form of video frames.\
 For this reason, i decided to introduce two more variables, Resolution and Frame Skip. The former resizes the input frames to a (preferrably) smaller size and the latter reduces the frame rate. Frame skipping directly increases performance by huge factor, but makes the output video choppy.
 
@@ -149,3 +154,10 @@ There were some gruelling moments as well, mostly relating to the processing spe
 Coming to the image processing part, i got to learn a lot about various image spaces like RGB, BGR, HSV and Lab. I looked up information about HSV and Lab image spaces to see how the brightness and sharpness of the output image could be improved.
 
 Lastly, i got to learn a lot about video processing and directory management using python. I had a good experience applying various filters to preprocess frames in a video. 
+
+## References
+* <a href=https://ivbhatt.medium.com/asciify-b3a0c70433fa>ASCIIfy Using OpenCV, Pillow and Python 3 to convert images to ASCII</a>
+* <a href=https://en.wikipedia.org/wiki/HSL_and_HSV#Lightness>HSL and HSV</a>
+* <a href=https://ffmpeg.org/ffmpeg.html>ffmpeg Documentation</a>
+* <a href=https://medium.com/analytics-vidhya/the-ultimate-handbook-for-opencv-pillow-72b7eff77cd7>The Ultimate Handbook for OpenCV & Pillow</a>
+* Presentations given by ACM IITR
