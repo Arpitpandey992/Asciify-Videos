@@ -21,13 +21,13 @@ As mentioned earlier, this project is made using python, so we'll be needing it 
 |  Numpy |     `pip install numpy`     |
 
 * After installing the necessary libraries, just clone the repo and open a terminal in the root directory of this repository.
-* The program accepts arguments as `python ascii.py [FilePath, FileType, Resolution, FrameSkip, Background Color]` where :\
-* FileType = "-v" for video and "-i" for image.\
+* The program accepts arguments as `python ascii.py [FilePath, FileType, Resolution, FrameSkip, Background Color]` where :
+* FileType = "-v" for video and "-i" for image.
 * Resolution is the width of the output, height will be scaled accordingly. set it as -1 to keep same dimensions.
-* FrameSkip is the amount of frames to skip in case selected FileType is video, set it randomly for image.\
+* FrameSkip is the amount of frames to skip in case selected FileType is video, set it randomly for image.
 A value of 2 will half the output frame rate.
 * Background is either "black" or "white"
-* For example write `python ascii.py "data/Videos/NootNoot2D.webm" -v 1280 2` to process the video file, at 1280x720 resolution (16:9), 15 fps (30/2) and black background (default option if no argument is given).
+* For example write `python Asciify.py "data/Videos/NootNoot2D.webm" -v 1280 2` to process the video file, at 1280x720 resolution (16:9), 15 fps (30/2) and black background (default option if no argument is given).
 * Default arguments are `["data/Videos/Video_Sample.mp4", "-v", -1, 1, "black"]`
 * Video processing especially will take a while, depending on the resolution of the video and number of frames, since optimization wasn't the priority yet. Images should render fairly quickly.
 * Video outputs are stored in ./Ouputs directory, where folders are automatically created.\
@@ -37,11 +37,6 @@ Image Outputs are simply named as out.png in ./Outputs folder
 ### Demo
 
 
-https://user-images.githubusercontent.com/101496881/174467677-0f612552-1fb6-43e5-8976-a2c64548d6b3.mp4
-
-
-
-Sorry for the Background noise.
 ### Results
 These results are obtained after allowing the program to run for a significant amount of time, hence they are not obtained in real time.
 
@@ -114,10 +109,28 @@ This is the additional task that i am doing in this project.
 This step mainly involves extracting frames from an input video, then applying the aforementioned algorithm to process each frame, then reproducing a video using these frames and audio from the original input.\
 For this, i am making use of OpenCV and ffmpeg.
 
-We extract all of the frames by using VideoCapture function of openCV. Then, proceed on to processing these frames one by one as we are extracting them (To avoid excess memory usage).\
-Now, we have all of the processed frames saved as .jpg files in the Output directory.
+We iterate through all of the frames in the input video using the VideoCapture function of openCV library. As we are iterating, we process the frame currently being iterated and extract them as `frame_{idx}.png in ./Outputs/Video_Name/frames` folder.
+Now, we have all of the processed frames saved as .png files in the Output directory having file names with a fixed pattern.
 
-ffmpeg is now used to gather all of these frames, and merge them with the audio in the original file (if it is present), and produce the final output video, which is then exported to the same Output folder.\
+
+ffmpeg is now used to gather all of these frames, and merge them with the audio in the original file (if it is present), and produce the final output video, which is then exported to `./Outputs/Video_Name as Video_Name.extension`.\
+Directory Structure:
+<pre>.
+└── Outputs
+    ├── Video_Name_1
+    │   ├── frames
+    │   │   ├── frame_1.png
+    │   │   ├── frame_2.png
+    │   │   ├── frame_3.png
+    │   │   └── ... (Numerically labelled frames stored here)
+    │   └── Video_Name_1.mp4
+    └── Video_Name_2
+        ├── frames
+        │   ├── frame_1.png
+        │   ├── frame_2.png
+        │   ├── frame_3.png
+        │   └── ... (Numerically labelled frames stored here)
+        └── Video_Name_2.webm</pre>
 This concludes the algorithm.
 
 ### Extra Information
@@ -126,15 +139,16 @@ The simplest way of calculating intensity is to just average out the RGB channel
 For Comparison, when calculating intensity :\
 ![](Results/Intensity_comparison.png)
 
-As we can see, using Lab and RGB gives identical output, But using HSV gives brighter output. I have included all these intensity calculation code in the program as comment to test later.
+As we can see, using Lab and RGB gives almost identical output, But using HSV gives brighter output. I have included all these intensity calculation code in the program as comments to suit the need for all situations.
 
-#### Coloring and Brightness of output
-For Coloring, i am increasing the brightness of the final output by converting the output to HSV, then increasing the Value channel by 20 (20% increase).
+#### Brightness of output
+For Coloring, i am increasing the brightness of the final output by converting the output to HSV, then increasing the Value channel by 20 (~20% increase).
 
 ![](Results/Brightness_Comparison.png)
 
 Which one's better is very subjective. I feel the results are great when using HSV for calculating intensity, and increasing brightness by 20%, so i went with that.
 
+#### Background Color
 The background of output images is by default set to black, but it could be changed of course. black background allows the ascii art to "pop out" in my opinion. White background of course looks better in a few situations.\
 For Comparison, Original Image:\
 ![](data/Images/Umineko_Ricordando_il_Passato.jpg)
@@ -153,7 +167,8 @@ Also, for some reason, while rebuilding the video from the processed frames, ffm
 ## Things i Learned
 This project taught me about various aspects of programming with python and working with media in general. Since my preferred language is C++ and javascript, i did this project using python to get some extra learning out of it.
 
-First of all, it is very easy to do basic array operations thanks to the versatile nature of numpy (OpenCV images are basically Numpy arrays). That made working with images way easier than it would have if i was working in C++. All of the image space conversions are available in the OpenCV library as inbuilt functions, making the code look very clean and easy to understand.\
+First of all, it is very easy to do basic array operations thanks to the versatile nature of numpy (OpenCV images are basically Numpy arrays). That made working with images way easier than it would have been if i was working in C++. All of the image space conversions are available in the OpenCV library as inbuilt functions, making the code look very clean and easy to understand.\
+
 There were some gruelling moments as well, mostly relating to the processing speeds of python. Python is simple to understand and use, but that mostly comes at a cost of performance. Many times, i had to wait hours to process a video merely two minutes long. 
 
 Coming to the image processing part, i got to learn a lot about various image spaces like RGB, BGR, HSV and Lab. I looked up information about HSV and Lab image spaces to see how the brightness and sharpness of the output image could be improved.
