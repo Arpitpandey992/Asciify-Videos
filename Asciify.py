@@ -114,14 +114,14 @@ class Ascify():
                 break
             if frame_idx % frame_skip != 0:
                 continue
-            cv2.imwrite(f"{path_frames}/frame_{idx}.jpg",
+            cv2.imwrite(f"{path_frames}/frame_{idx}.png",
                         self.AscifyImage(frame, bg=bg, res=res))
             print(f"Processed Frame : {frame_idx}")
             idx += 1
         print("Done Processing Frames")
 
         # Assembling Video from the Produced Frames and Audio from the input Video
-        in1 = ffmpeg.input(f'{path_frames}/frame_%d.jpg',
+        in1 = ffmpeg.input(f'{path_frames}/frame_%d.png',
                            framerate=(FPS/frame_skip))
         # Checking if audio is present in original stream
         audio_present = ffmpeg.probe(video_path, select_streams='a')
