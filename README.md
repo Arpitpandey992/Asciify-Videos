@@ -43,7 +43,7 @@ Image Outputs are simply named as out.png in ./Outputs folder
 ### Demo
 
 
-Uploading Demo.mp4…
+https://user-images.githubusercontent.com/101496881/174473073-882121be-13a9-465f-b011-d8daf2f52ade.mp4
 
 
 Sorry for the background noise.
