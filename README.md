@@ -37,6 +37,10 @@ Image Outputs are simply named as out.png in ./Outputs folder
 ### Demo
 
 
+https://user-images.githubusercontent.com/101496881/174467930-4b5acf1b-5db0-4e71-8b72-7bc4a0dc6802.mp4
+
+
+Sorry for the background noise.
 ### Results
 These results are obtained after allowing the program to run for a significant amount of time, hence they are not obtained in real time.
 
