@@ -171,7 +171,7 @@ Also, for some reason, while rebuilding the video from the processed frames, ffm
 ## Things i Learned
 This project taught me about various aspects of programming with python and working with media in general. Since my preferred language is C++ and javascript, i did this project using python to get some extra learning out of it.
 
-First of all, it is very easy to do basic array operations thanks to the versatile nature of numpy (OpenCV images are basically Numpy arrays). That made working with images way easier than it would have been if i was working in C++. All of the image space conversions are available in the OpenCV library as inbuilt functions, making the code look very clean and easy to understand.\
+First of all, it is very easy to do basic array operations thanks to the versatile nature of numpy (OpenCV images are basically Numpy arrays). That made working with images way easier than it would have been if i was working in C++. All of the image space conversions are available in the OpenCV library as inbuilt functions, making the code look very clean and easy to understand.
 
 There were some gruelling moments as well, mostly relating to the processing speeds of python. Python is simple to understand and use, but that mostly comes at a cost of performance. Many times, i had to wait hours to process a video merely two minutes long. 
 
