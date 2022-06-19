@@ -1,5 +1,7 @@
 <p align="center"><img width="100%" src="Results/Logos.svg" /></p>
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+--------------------------------------------------------------------------------
+
 
 # Videos To Ascii Art Generator
 
@@ -9,6 +11,7 @@
 * Demo and Results
 * Internal Workings
 * Things i Learned
+* References
 
 ## Description
 The final goal of this project is to convert an input video into an <a href = https://en.wikipedia.org/wiki/ASCII_art> ascii art </a> video. For this task, I used python and a couple of libraries.
