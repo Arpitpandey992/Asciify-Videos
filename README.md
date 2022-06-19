@@ -1,3 +1,6 @@
+<p align="center"><img width="100%" src="Results/Logos.svg" /></p>
+--------------------------------------------------------------------------------
+
 # Videos To Ascii Art Generator
 
 ## Table of Contents: 
