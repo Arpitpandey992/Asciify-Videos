@@ -1,5 +1,5 @@
 <p align="center"><img width="100%" src="Results/Logos.svg" /></p>
---------------------------------------------------------------------------------
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 # Videos To Ascii Art Generator
 
