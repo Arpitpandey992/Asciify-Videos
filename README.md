@@ -44,7 +44,7 @@ Image Outputs are simply named as out.png in ./Outputs folder
 
 
 
-https://user-images.githubusercontent.com/101496881/174612790-86c0db57-943d-4208-9fbf-a481d1b47e0d.mp4
+https://user-images.githubusercontent.com/101496881/174613828-4f5cbf38-9927-42f7-a301-db4108853f2c.mp4
 
 
 
