@@ -43,12 +43,15 @@ Image Outputs are simply named as out.png in ./Outputs folder
 ### Demo
 
 
-https://user-images.githubusercontent.com/101496881/174473073-882121be-13a9-465f-b011-d8daf2f52ade.mp4
+
+https://user-images.githubusercontent.com/101496881/174612790-86c0db57-943d-4208-9fbf-a481d1b47e0d.mp4
+
 
 
 Sorry for the background noise.
 ### Results
 These results are obtained after allowing the program to run for a significant amount of time, hence they are not obtained in real time.
+
 
 
 https://user-images.githubusercontent.com/101496881/174437541-c6fc9890-94db-42d2-820f-b6ace8a5521f.mp4
