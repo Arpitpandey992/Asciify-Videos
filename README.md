@@ -48,7 +48,6 @@ https://user-images.githubusercontent.com/101496881/174613828-4f5cbf38-9927-42f7
 
 
 
-Sorry for the background noise.
 ### Results
 These results are obtained after allowing the program to run for a significant amount of time, hence they are not obtained in real time.
 
