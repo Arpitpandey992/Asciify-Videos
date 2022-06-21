@@ -63,16 +63,21 @@ class Ascify():
                 x2 = fontWidth*(j+1)
                 y2 = fontHeight*(i+1)
 
+                #Calculating Intensity Using Lab Image:
                 # intensity = np.mean(LabImage[y1:y2, x1:x2, 0])
+
+                #Calculating Intensity Using HSV Image:
                 i1 = np.mean(HSVImage[y1:y2, x1:x2, 1])
                 i2 = np.mean(HSVImage[y1:y2, x1:x2, 2])
                 intensity = (i1 + i2)/2
+
+                #Calculating intensity Using RGB Image:
                 # g = np.mean(image[y1:y2, x1:x2, 0])
                 # b = np.mean(image[y1:y2, x1:x2, 1])
                 # r = np.mean(image[y1:y2, x1:x2, 2])
                 # intensity = (r+g+b)/3
-
-                position = int((intensity/255) * (len(self.charArray)))-1
+    
+                position = int((intensity/255) * (len(self.charArray)-1))
 
                 color = np.mean(RGBImage[y1:y2, x1:x2],
                                 axis=(0, 1)).astype(np.uint8)
