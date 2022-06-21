@@ -10,7 +10,7 @@
 * How to Run The Project
 * Demo and Results
 * Internal Workings
-* Things i Learned
+* Learning Opportunities
 * References
 * Future Plans
 
@@ -90,11 +90,11 @@ The order that i used :\
 <tt>.'\`^",:;Il!i<~+_-?[{1(|/tfjrxnuvczXYUJCLQ0OZmwqpdbkhao*#MW&8%B@$</tt>
 
 We can map each intensity value from 0 - 255 to their corresponding ascii character using the formula : \
-`position = int((intensity/255) * (len(char_list)))-1`
+`position = int((intensity/255) * (len(self.charArray)-1))`
 
 Since having ascii characters represented by white characters feels bland, i am also colorizing each character with the mean color of the pixel area they map to.
 
-These give the image two major properties:
+These gives the image two major properties:
 * Color allows difference to be visible
 * Intensity allows the depth to be more apparent, making asciified images look sharper.
 
@@ -178,7 +178,7 @@ For this reason, i decided to introduce two more variables, Resolution and Frame
 
 Also, for some reason, while rebuilding the video from the processed frames, ffmpeg was unable to process the frames when either their height or width were odd. hence, i reduced the dimensions by one in case they weren't even.
 
-## Things i Learned
+## Learning Opportunities
 This project taught me about various aspects of programming with python and working with media in general. Since my preferred language is C++ and javascript, i did this project using python to get some extra learning out of it.
 
 First of all, it is very easy to do basic array operations thanks to the versatile nature of numpy (OpenCV images are basically Numpy arrays). That made working with images way easier than it would have been if i was working in C++. All of the image space conversions are available in the OpenCV library as inbuilt functions, making the code look very clean and easy to understand.
@@ -199,4 +199,5 @@ Lastly, i got to learn a lot about video processing and directory management usi
 ## Future Plans
 * Optimizing the Program
 * Making it more user friendly by implementing a better command line interface
-* Adding more features
+* Adding more features such as Asciifying Web Cam in Real Time
+* Improving quality of the Ascii Image produced by mapping characters according to their intensity and angle of inclination with the image cell
