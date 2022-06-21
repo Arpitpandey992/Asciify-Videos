@@ -27,14 +27,15 @@ As mentioned earlier, this project is made using python, so we'll be needing it 
 | ffmpeg | `pip install ffmpeg-python` |
 |  Numpy |     `pip install numpy`     |
 
-* After installing the necessary libraries, just clone the repo and open a terminal in the root directory of this repository.
+* Install the necessary libraries using the aforementioned commands.
+* Now clone the repository using `https://github.com/Arpitpandey992/Asciify-Videos.git`
+* open a terminal in the root directory of this cloned repository.
 * The program accepts arguments as `python ascii.py [FilePath, FileType, Resolution, FrameSkip, Background Color]` where :
 * FileType = "-v" for video and "-i" for image.
 * Resolution is the width of the output, height will be scaled accordingly. set it as -1 to keep same dimensions.
-* FrameSkip is the amount of frames to skip in case selected FileType is video, set it randomly for image.
-A value of 2 will half the output frame rate.
+* FrameSkip is the amount of frames to skip in case selected FileType is video, set it randomly for image. For example, a value of 3 will skip 2 frames and display every 3rd frame. A value of 2 will essentially half the output frame rate.
 * Background is either "black" or "white"
-* For example write `python Asciify.py "data/Videos/NootNoot2D.webm" -v 1280 2` to process the video file, at 1280x720 resolution (16:9), 15 fps (30/2) and black background (default option if no argument is given).
+* For example write `python Asciify.py "data/Videos/NootNoot2D.webm" -v 1280 2 black` to process the video file, at 1280x720 resolution (16:9), 15 fps (30/2) and black background.
 * Default arguments are `["data/Videos/Video_Sample.mp4", "-v", -1, 1, "black"]`
 * Video processing especially will take a while, depending on the resolution of the video and number of frames, since optimization wasn't the priority yet. Images should render fairly quickly.
 * Video outputs are stored in ./Ouputs directory, where folders are automatically created.\
