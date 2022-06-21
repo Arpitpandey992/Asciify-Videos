@@ -197,5 +197,5 @@ Lastly, i got to learn a lot about video processing and directory management usi
     
 ## Future Plans
 * Optimizing the Program
-* Making it more user friendly by implementing better command line interface
+* Making it more user friendly by implementing a better command line interface
 * Adding more features
