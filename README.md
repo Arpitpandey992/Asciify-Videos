@@ -12,6 +12,7 @@
 * Internal Workings
 * Things i Learned
 * References
+* Future Plans
 
 ## Description
 The final goal of this project is to convert an input video into an <a href = https://en.wikipedia.org/wiki/ASCII_art> ascii art </a> video. For this task, I used python and a couple of libraries.
@@ -193,3 +194,8 @@ Lastly, i got to learn a lot about video processing and directory management usi
 * <a href=https://ffmpeg.org/ffmpeg.html>ffmpeg Documentation</a>
 * <a href=https://medium.com/analytics-vidhya/the-ultimate-handbook-for-opencv-pillow-72b7eff77cd7>The Ultimate Handbook for OpenCV & Pillow</a>
 * Presentations given by ACM IITR
+    
+## Future Plans
+* Optimizing the Program
+* Making it more user friendly by implementing better command line interface
+* Adding more features
