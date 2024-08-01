@@ -72,6 +72,10 @@ https://user-images.githubusercontent.com/101496881/174453509-941c505c-0164-4824
 
 
 
+https://github.com/user-attachments/assets/a8d7acc2-259a-49b4-ad14-e71f72b1f9f2
+
+
+
 ## Internal Workings
 Let's see how this program works.\
 This project can be broken down into two major subparts:
