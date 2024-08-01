@@ -20,6 +20,7 @@ The final goal of this project is to convert an input video into an <a href = ht
 ## How to Run the Project
 As mentioned earlier, this project is made using python, so we'll be needing it firstly (Developed using Python 3.10.5).
 ### Dependencies
+`pip install -r requirements.txt`
 |  Name  |     pip install Command     |
 |:------:|:---------------------------:|
 | Pillow |     `pip install Pillow`    |

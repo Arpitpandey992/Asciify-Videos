@@ -1,0 +1,5 @@
+ffmpeg-python==0.2.0
+future==1.0.0
+numpy==2.0.1
+opencv-python-headless==4.10.0.84
+Pillow==9.5.0
